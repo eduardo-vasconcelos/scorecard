@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <title>JSP Page</title>
+        <style>
+            #mainDiv{
+                width:90%;
+                height: 90%;
+                top: 5%;
+                left: 5%;
+                position:absolute;
+                border: 1px solid black;
+            }
+            
+            .divEt{
+                width:30px;
+                height: 50px;
+                top: 5%;
+                left: 5%;
+                position:relative;
+            }
+            .divBody{
+                width: 30px;
+                height: 30px;
+                position: relative;
+                
+            }
+            
+            .divLeg11{
+                width: 2px;
+                height: 10px;
+                position: relative;
+                left: 10px;
+                background: black;
+            }
+            .divLeg12{
+                width: 2px;
+                height: 10px;
+                position: relative;
+                left: 20px;
+                top: -10px;
+                background: black;
+            }
+            .divLeg21{
+                width: 2px;
+                height: 10px;
+                position: relative;
+                left: 9px;
+                top:-10px;
+                background: black;
+            }
+            .divLeg22{
+                width: 2px;
+                height: 10px;
+                position: relative;
+                left: 19px;
+                top: -20px;
+                background: black;
+            }
+        </style>
+        <script>
+            $(function(){
+                
+                var divEt = $(".divEt");
+                var divMain = $("#mainDiv");
+                var timeInterval = 500;
+                var moviment = 10;
+                var fallMoviment = 40;
+                
+               // var d = divEt.clone();
+                
+                //d.css("left",divEt.position().left+divEt.width()+10+"px");
+                
+                 //divMain.append(d);
+                 
+                 var divEt = $(".divEt");
+                
+                //game control variables.
+                
+                var movimentDirection = 1;
+                var legMoviment = 2;
+                
+                setInterval(gameLooper,timeInterval);
+                
+                function gameLooper(){
+                    
+                    if(divEt.position().left+divEt.width()+(moviment*movimentDirection)>=divMain.width() || divEt.position().left+(moviment*movimentDirection)<divMain.position().left){
+                        divEt.css("top", divEt.position().top+fallMoviment+"px");
+                        movimentDirection *= -1;
+                        
+                    }else{
+                        divEt.css("left", divEt.position().left+(moviment*movimentDirection)+"px");
+                        $(".divLeg21").css("left",($(".divLeg21").position().left+legMoviment)+"px");
+                        $(".divLeg22").css("left",($(".divLeg22").position().left+legMoviment)+"px");
+                        legMoviment *= -1;
+                    }
+                    
+                }
+                
+            });
+        </script>
+    </head>
+    <body>
+        <div id="mainDiv">
+            <div class="divEt">
+                <div class="divBody"><img src="GretchenEt%20formatado.jpg" style="width:30px;height: 30px"/></div>
+                <div class="divLeg11"></div>
+                <div class="divLeg12"></div>
+                <div class="divLeg21"></div>
+                <div class="divLeg22"></div>
+            </div>
+        </div>
+    </body>
+</html>
